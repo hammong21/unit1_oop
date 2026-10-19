@@ -34,6 +34,13 @@ Your reflection should be approximately 150–200 words and address the followin
 3. Compare OOP to procedural programming.
 4. Discuss the benefits of maintainability and reusability and apply this managing overhead, practical application development, and future use.
 
+## My Design Approach
+
+My design approach utilizes a hierarchical structure to implement Object-Oriented Programming principles. I established a base Fruit parent class to encapsulate common attributes (such as name and color) and behaviors (the describe method) that all fruit objects share.  This minimizes redundancy by ensuring that core logic is defined in only one place.
+
+To implement a specific object, I created an Apple child class that inherits from the Fruit parent class. This allowed me to extend the base functionality by adding a specialized attribute for "variety" and overriding the describe method to provide more specific information. By instantiating these classes in the main() function, I transformed these blueprints into concrete objects, demonstrating how inheritance allows for a scalable design where specific fruit types can be added without modifying the existing parent logic. 
+
+
 ## Here is my Reflection
 
 Completing this assignment allowed me to move from theoretical understanding to practical implementation of Object-Oriented Programming (OOP) in Python. By developing a Fruit parent class and an Apple child class, I gained hands-on experience with inheritance and method overriding. A key learning point was the distinction between shallow and deep copying; I discovered that while a shallow copy creates a new object, it still references the same nested objects (like my fruit's "ripeness" dictionary), whereas a deep copy creates a fully independent clone 
