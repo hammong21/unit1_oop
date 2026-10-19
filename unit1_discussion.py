@@ -1,101 +1,95 @@
 """
 ===========================================================
 Unit 1 DISCUSSION: Python OOP, Namespaces, and Copying
-===========================================================
-
+===========================================================  
 INSTRUCTIONS:
 In this assignment, you will build and explore object-oriented programming (OOP) concepts in Python.
 You are provided with starter code containing TODO sections. Your task is to complete, modify, and
 analyze the code to demonstrate understanding of inheritance, namespaces, and object copying.
-"""
-
-
+"""  
 from copy import copy, deepcopy
 
+# TODO: Create a parent class
+class Fruit:
+    # Class attribute (demonstrates class namespace)
+    category = "Produce"
 
-# TODO 1:
-# Create a parent class.
-#
-# Requirements:
-# - Include at least one class variable.
-# - Include at least two instance variables.
-# - Include a constructor (__init__).
-# - Include a method that returns or displays information about the object.
-#
-# Replace the pass statement with your implementation.
+    # - Include a constructor (__init__). [1]
+    def __init__(self, name, color):
+        # - Add at least two new instance variables. [1]
+        self.name = name
+        self.color = color
+        # Nested dictionary to demonstrate shallow vs deep copying
+        self.details = {"ripeness": "unknown"}
 
-class ParentClass:
-    pass
+    def describe(self):
+        return f"This is a {self.color} {self.name}."
 
+# TODO: Create a child class using inheritance
+class Apple(Fruit):
+    def __init__(self, name, color, variety):
+        # Use super() to inherit attributes from Fruit
+        super().__init__(name, color)
+        self.variety = variety
 
-# TODO 2:
-# Create a child class that inherits from the parent class.
-#
-# Requirements:
-# - Use inheritance.
-# - Add at least one new class variable.
-# - Add at least two new instance variables.
-# - Add at least one new method.
-# - Override a method from the parent class.
-#
-# Replace the pass statement with your implementation.
+    # Extend functionality by overriding the describe method
+    def describe(self):
+        return f"This is a {self.color} {self.variety} apple."
 
-class ChildClass(ParentClass):
-    pass
-
-
-# TODO 3:
-# Create a function that demonstrates class namespaces and instance namespaces.
-#
-# Your function should:
-# - Create at least two objects of the child class.
-# - Access a class variable through the class itself.
-# - Access the same class variable through an object.
-# - Add a new attribute to only one object after it is created.
-# - Display each object's namespace using __dict__.
-# - Display information about the class namespace.
-
+# TODO: Demonstrate class and instance namespaces
 def demonstrate_namespaces():
-    print("\n=== Namespace Demonstration ===")
-    print("TODO: Implement namespace demonstration")
+    print("\n--- Namespace Demonstration ---")
+    my_apple = Apple("Apple", "Red", "Fuji")
+    
+    # Displaying the instance namespace using __dict__
+    print(f"Instance Namespace (Apple object): {my_apple.__dict__}")
+    
+    # Displaying the class namespace
+    print(f"Class Namespace (Fruit class): {Fruit.__dict__}")
 
-
-# TODO 4:
-# Create a function that demonstrates shallow copying and deep copying.
-#
-# Requirements:
-# - Create an object that contains nested mutable data.
-# - Create a shallow copy.
-# - Create a deep copy.
-# - Modify the original object's nested data.
-# - Display the original object, shallow copy, and deep copy.
-# - Use comments to explain the difference between shallow and deep copying.
-
+# TODO: Demonstrate shallow and deep copying
 def demonstrate_copying():
-    print("\n=== Copy Demonstration ===")
-    print("TODO: Implement shallow copy and deep copy demonstration")
+    print("\n--- Copying Demonstration ---")
+    original = Apple("Apple", "Green", "Granny Smith")
+    original.details["ripeness"] = "Ripe"
 
+    # Shallow Copy
+    shallow_copy = copy(original)
+    # Deep Copy
+    deep_copy = deepcopy(original)
 
-# TODO 5:
-# Complete the main function.
-#
-# Requirements:
-# - Create at least one object from the parent class.
-# - Create at least one object from the child class.
-# - Demonstrate inheritance by calling methods.
-# - Call your namespace demonstration function.
-# - Call your copy demonstration function.
+    # Modify the nested object in the original
+    original.details["ripeness"] = "Overripe"
+
+    print(f"Original ripeness: {original.details['ripeness']}")
+    print(f"Shallow copy ripeness: {shallow_copy.details['ripeness']} (Changes because it shares the reference)")
+    print(f"Deep copy ripeness: {deep_copy.details['ripeness']} (Stays 'Ripe' because it has its own copy)")
+
+# TODO: Add a student-created extension
+def check_edibility(fruit_obj):
+    """Extension: Checks if the fruit is too overripe to eat."""
+    if fruit_obj.details["ripeness"] == "Overripe":
+        return "Maybe not! It's too overripe."
+    return "Yes, it's perfectly edible!"
 
 def main():
     print("=== Unit 1 OOP Assignment ===")
+    
+    # TODO: Create and test objects in main()
+    print("\nTesting Parent Object:")
+    generic_fruit = Fruit("Generic Fruit", "Yellow")
+    print(generic_fruit.describe())
 
-    print("\nTODO: Create and test your parent object")
+    print("\nTesting Child Object:")
+    my_apple = Apple("Apple", "Red", "Gala")
+    print(my_apple.describe())
 
-    print("\nTODO: Create and test your child object")
-
+    # Call the demonstration functions
     demonstrate_namespaces()
     demonstrate_copying()
-
+    
+    # Test the extension
+    print(f"\nExtension Test: Is the apple edible? {check_edibility(my_apple)}")
 
 if __name__ == "__main__":
     main()

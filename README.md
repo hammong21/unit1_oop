@@ -33,3 +33,11 @@ Your reflection should be approximately 150–200 words and address the followin
 2. What challenges did you encounter, and how did you overcome them?
 3. Compare OOP to procedural programming.
 4. Discuss the benefits of maintainability and reusability and apply this managing overhead, practical application development, and future use.
+
+## Here is my Reflection
+
+Completing this assignment allowed me to move from theoretical understanding to practical implementation of Object-Oriented Programming (OOP) in Python. By developing a Fruit parent class and an Apple child class, I gained hands-on experience with inheritance and method overriding. A key learning point was the distinction between shallow and deep copying; I discovered that while a shallow copy creates a new object, it still references the same nested objects (like my fruit's "ripeness" dictionary), whereas a deep copy creates a fully independent clone 
+
+The primary challenge I encountered was distinguishing between class and instance namespaces. I overcame this by utilizing the __dict__ attribute to visualize how Python stores attributes differently for the class versus the individual object.
+
+Compared to procedural programming, which follows a linear sequence of steps, OOP allows me to group data and behavior together. This shift significantly improves maintainability and reusability. For example, if I want to add more fruit types (like Orange or Banana), I can simply inherit from the Fruit class rather than rewriting the core logic. In practical application development, this minimizes overhead and ensures that future updates to the base class automatically propagate to all child classes, making the codebase much more scalable.
